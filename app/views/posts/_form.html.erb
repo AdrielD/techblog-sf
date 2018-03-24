@@ -1,0 +1,28 @@
+<p>insira o texto:</p>
+<%= form_with model: @post, local: true do |f| %>
+	<p>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.label :markdown_text %>
+		<%= f.text_area :markdown_text, id: :markdown_text %>
+	</p>
+	<p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<input type="button" name="preview" id="preview_button" value="Preview">
+<p id="preview_screen"></p>
+<script type="text/javascript">
+	var markdown_text = document.getElementById("markdown_text");
+	var preview_button = document.getElementById("preview_button");
+	preview_button.addEventListener("click", function() {
+		App.markdown_conversion.convert(markdown_text.value);
+	});
+
+	var preview_screen = document.getElementById("preview_screen");
+	document.addEventListener("markdown_conversion_channel", function(e) {
+		preview_screen.innerHTML = e.detail
+	});
+</script>

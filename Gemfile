@@ -6,6 +6,7 @@ gem 'puma', '~> 3.7'
 gem 'turbolinks', '~> 5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'sidekiq'
+gem 'redcarpet'
 
 # gem 'redis', '~> 4.0'
 # gem 'capistrano-rails'

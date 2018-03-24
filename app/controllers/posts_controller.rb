@@ -18,6 +18,7 @@ class PostsController < ApplicationController
 		@post.converted_text = convert(@post.markdown_text)
 
 		if @post.save
+			MarkdownProcessorWorker.new.perform(@post.id)
 			redirect_to @post
 		else
 			render :new
@@ -33,6 +34,7 @@ class PostsController < ApplicationController
 		@post.converted_text = convert(@post.markdown_text)
 
 		if @post.update(allowed_params)
+			MarkdownProcessorWorker.new.perform(@post.id)
 			redirect_to @post
 		else
 			render :edit

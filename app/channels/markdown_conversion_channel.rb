@@ -8,6 +8,6 @@ class MarkdownConversionChannel < ApplicationCable::Channel
   end
 
   def convert(data)
-  	MarkdownProcessorWorker.new.perform(data['message'])
+  	MarkdownProcessorWorker.new.perform_broadcast(data['message'])
   end
 end

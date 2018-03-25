@@ -1,8 +1,9 @@
 <h1>Lista de postagens</h1>
-<p><%= link_to "New Post", new_post_path %></p>
+<% if logged_in? %>
+	<p><%= link_to "New Post", new_post_path %></p>
+<% end %>
 <hr>
 <% @posts.each do |post| %>
 	<h2><a href="<%= post_path(post) %>"><%= post.title %></a></h2>
-	<p><%= post.converted_text %></p>
 	<hr>
 <% end %>

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_action :verify_authentication, except: [:index, :show]
 	
 	def index
 		@posts = Post.all
@@ -15,11 +16,10 @@ class PostsController < ApplicationController
 
 	def create
 		@post = Post.new(allowed_params)
-		@post.converted_text = convert(@post.markdown_text)
 
 		if @post.save
 			MarkdownProcessorWorker.new.perform(@post.id)
-			redirect_to @post
+			redirect_to @post, notice: 'Post created!'
 		else
 			render :new
 		end
@@ -31,11 +31,10 @@ class PostsController < ApplicationController
 
 	def update
 		@post = Post.find(params[:id])
-		@post.converted_text = convert(@post.markdown_text)
 
 		if @post.update(allowed_params)
 			MarkdownProcessorWorker.new.perform(@post.id)
-			redirect_to @post
+			redirect_to @post, notice: 'Post updated!'
 		else
 			render :edit
 		end
@@ -48,10 +47,6 @@ class PostsController < ApplicationController
 
 	def allowed_params
 		params.require(:post).permit(:author_id, :title, :markdown_text)
-	end
-
-	def convert(text)
-		text.gsub("\n", "<br>")
 	end
 
 end

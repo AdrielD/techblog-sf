@@ -11,14 +11,12 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
-		puts ActiveSupport::Dependencies.autoload_paths
 	end
 
 	def create
 		@post = Post.new(allowed_params)
 
 		if @post.save
-			MarkdownProcessorWorker.new.perform(@post.id)
 			redirect_to @post, notice: 'Post created!'
 		else
 			render :new
@@ -33,14 +31,10 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 
 		if @post.update(allowed_params)
-			MarkdownProcessorWorker.new.perform(@post.id)
 			redirect_to @post, notice: 'Post updated!'
 		else
 			render :edit
 		end
-	end
-
-	def destroy
 	end
 
 	private
@@ -48,5 +42,4 @@ class PostsController < ApplicationController
 	def allowed_params
 		params.require(:post).permit(:author_id, :title, :markdown_text)
 	end
-
 end

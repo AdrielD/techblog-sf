@@ -1,0 +1,15 @@
+# Welcome to my new vlog!
+## Techblog 2.0
+
+I'm very *happy* to announce that **everything is fine now**!
+
+My previous blog was hacked because:
+1. I was lazy
+2. My password had no numbers and was too small
+3. Definitely not 'abc123'!
+4. I was using a public coffee network to get stuff done...
+
+Most important of all: now the password is not stored as plain text on the database anymore!
+
+Now, the programmer told me he used this [Ruby on Rails](http://rubyonrails.org/) thing 
+to make this blog and PHP is bad... well, guess I believe him!

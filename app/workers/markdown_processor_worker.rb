@@ -1,10 +1,8 @@
 class MarkdownProcessorWorker
   include Sidekiq::Worker
 
-  def perform(post_id)
-  	post = Post.find(post_id)
-  	post.converted_text = convert(post.markdown_text)
-  	post.save
+  def perform(text)
+    convert(text)
   end
 
   def perform_broadcast(text)

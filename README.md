@@ -17,3 +17,6 @@ Setup database and dependencies:
 Star server:
 
 	rails s
+
+User: leonidas@sparta.com
+Pass: ares123

@@ -18,25 +18,24 @@
 	function elid(id) { return document.getElementById(id); }
 
 	function toolAction(text_element, markdown_text, selection_start, selection_end) {
-		var sel = textarea.selectionEnd;
-		text_element.value = text_element.value.substring(0, sel) + markdown_text + text_element.value.substring(sel, textarea.length);
+		var sel = text_element.selectionEnd;
+		text_element.value = text_element.value.substring(0, sel) + markdown_text + text_element.value.substring(sel, text_element.length);
 		text_element.focus();
 		text_element.setSelectionRange(sel+selection_start, sel+selection_start+selection_end)
 	}
 
-	var textarea = elid("markdown_text");
-	elid("h1").onclick = function() { toolAction(textarea, "\n# TITLE", 3, 5); }
-	elid("h2").onclick = function() { toolAction(textarea, "\n## TITLE", 4, 5); }
-	elid("h3").onclick = function() { toolAction(textarea, "\n### TITLE", 5, 5); }
-	elid("h4").onclick = function() { toolAction(textarea, "\n#### TITLE", 6, 5); }
-	elid("h5").onclick = function() { toolAction(textarea, "\n##### TITLE", 7, 5); }
-	elid("h6").onclick = function() { toolAction(textarea, "\n###### TITLE", 8, 5); }
-	elid("i").onclick = function() { toolAction(textarea, "*TEXT*", 1, 4); }
-	elid("b").onclick = function() { toolAction(textarea, "**TEXT**", 2, 4); }
-	elid("s").onclick = function() { toolAction(textarea, "~~TEXT~~", 2, 4); }
-	elid("list").onclick = function() { toolAction(textarea, "\n1. ITEM\n2. ITEM\n3. ITEM\n", 4, 4); }
-	elid("link").onclick = function() { toolAction(textarea, "[TEXT](LINK)", 1, 4); }
-	elid("img").onclick = function() { toolAction(textarea, "![TEXT](IMAGE_LINK \"TITLE\")", 2, 4); }
-	elid("code").onclick = function() { toolAction(textarea, "`CODE`", 1, 4); }
-	elid("quote").onclick = function() { toolAction(textarea, "\n> TEXT", 3, 4); }
+	elid("h1").onclick = function() { toolAction(elid("markdown_text"), "\n# TITLE", 3, 5); }
+	elid("h2").onclick = function() { toolAction(elid("markdown_text"), "\n## TITLE", 4, 5); }
+	elid("h3").onclick = function() { toolAction(elid("markdown_text"), "\n### TITLE", 5, 5); }
+	elid("h4").onclick = function() { toolAction(elid("markdown_text"), "\n#### TITLE", 6, 5); }
+	elid("h5").onclick = function() { toolAction(elid("markdown_text"), "\n##### TITLE", 7, 5); }
+	elid("h6").onclick = function() { toolAction(elid("markdown_text"), "\n###### TITLE", 8, 5); }
+	elid("i").onclick = function() { toolAction(elid("markdown_text"), "*TEXT*", 1, 4); }
+	elid("b").onclick = function() { toolAction(elid("markdown_text"), "**TEXT**", 2, 4); }
+	elid("s").onclick = function() { toolAction(elid("markdown_text"), "~~TEXT~~", 2, 4); }
+	elid("list").onclick = function() { toolAction(elid("markdown_text"), "\n1. ITEM\n2. ITEM\n3. ITEM\n", 4, 4); }
+	elid("link").onclick = function() { toolAction(elid("markdown_text"), "[TEXT](LINK)", 1, 4); }
+	elid("img").onclick = function() { toolAction(elid("markdown_text"), "![TEXT](IMAGE_LINK \"TITLE\")", 2, 4); }
+	elid("code").onclick = function() { toolAction(elid("markdown_text"), "`CODE`", 1, 4); }
+	elid("quote").onclick = function() { toolAction(elid("markdown_text"), "\n> TEXT", 3, 4); }
 </script>

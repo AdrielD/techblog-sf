@@ -12,7 +12,7 @@ class MarkdownProcessorWorker
   private
 
   def convert(text)
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = { strikethrough: true })
     markdown.render(text)
   end
 end

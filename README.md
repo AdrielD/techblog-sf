@@ -1,3 +1,5 @@
+Live version at: https://techblog-sf.herokuapp.com
+
 Download:
  
 	git clone https://github.com/AdrielD/techblog-sf.git

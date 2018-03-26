@@ -1,18 +1,14 @@
-<p>insira o texto:</p>
 <%= form_with model: @post, local: true do |f| %>
-	<p>
+	<div class="form-group">
+		<br>
 		<%= f.label :title %>
-		<%= f.text_field :title %>
-	</p>
-	<p>
-		<%= f.label :markdown_text %><br>
-		<%= f.text_area :markdown_text, id: :markdown_text, size: "100x25" %>
-	</p>
-	<p>
-    <%= f.submit %>
-  </p>
+		<%= f.text_field :title, class: "form-control form-control-sm" %><br><br>
+		<%= f.label :Text %>
+		<%= render "markdown_tools" %>
+		<%= f.text_area :markdown_text, id: :markdown_text, size: "100x25", class: "form-control form-control-sm" %>
+    <%= f.submit "Save", class: "btn btn-success" %>
 <% end %>
-<input type="button" name="preview" id="preview_button" value="Preview">
+<input type="button" name="preview" id="preview_button" class="btn btn-primary" value="Preview">
 <p id="preview_screen"></p>
 <script type="text/javascript">
 	var markdown_text = document.getElementById("markdown_text");

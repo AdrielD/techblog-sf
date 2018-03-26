@@ -2,6 +2,6 @@
 <p><%= @post.converted_text.html_safe %></p>
 <hr>
 <% if logged_in? %>
-	<p><%= link_to "Edit", edit_post_path(@post) %></p>
+	<p><%= link_to "Edit", edit_post_path(@post), class: "btn btn-success" %></p>
 <% end %>
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Back', posts_path, class: "btn btn-danger" %>

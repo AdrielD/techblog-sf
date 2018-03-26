@@ -2,19 +2,20 @@
 <html>
   <head>
     <title>Techblog</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= action_cable_meta_tag %>
   </head>
 
-  <body>
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
-
+  <body class="container base-color">
+    <%= bootstrap_flash %>
     <%= render "layouts/login_header" %>
-    <%= yield %>
+    <div class="row">
+      <div class="col">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

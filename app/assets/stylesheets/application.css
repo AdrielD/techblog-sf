@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+body { font-family: 'Montserrat', sans-serif; }
+.base-color { background-color: #0c2651; color: #FFF; }
+.tool { font-weight: bold; width: 35px; height: 35px; vertical-align: bottom;}

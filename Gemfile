@@ -7,9 +7,8 @@ gem 'turbolinks', '~> 5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'sidekiq'
 gem 'redcarpet'
-
-# gem 'redis', '~> 4.0'
-# gem 'capistrano-rails'
+gem 'jquery-rails'
+gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   gem 'pry'

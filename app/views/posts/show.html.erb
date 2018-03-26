@@ -1,7 +1,25 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.converted_text.html_safe %></p>
-<hr>
-<% if logged_in? %>
-	<p><%= link_to "Edit", edit_post_path(@post), class: "btn btn-success" %></p>
-<% end %>
-<%= link_to 'Back', posts_path, class: "btn btn-danger" %>
+<div class="row left-buffer" style="padding-top: 10px;">
+  <div class="col-md-10 col-md-offset-1">
+  <% if logged_in? %>
+    <%= link_to "Edit", edit_post_path(@post), class: "btn btn-success pull-right" %>
+  <% end %>
+  <%= link_to 'Back', posts_path, class: "btn btn-danger" %>
+  </div>
+</div>
+<div class="row left-buffer">
+  <div class="col">
+    <h1 class="title"><%= @post.title %></h1>
+  </div>
+</div>
+<div class="row left-buffer">
+  <div class="col-md-6 col-md-offset-2">
+    <small class="right-buffer"><i>Created at:</i> <%= @post.created_at.to_s[0..10] %></small>
+    <small class="right-buffer"><i>Last update:</i> <%= @post.updated_at.to_s[0..10] %></small>
+    <small><i>By:</i> <%= @post.user.name %></small>
+  </div>
+</div>
+<div class="row left-buffer">
+  <div class="col-md-10 col-md-offset-1">
+    <%= @post.converted_text.html_safe %>
+  </div>
+</div>

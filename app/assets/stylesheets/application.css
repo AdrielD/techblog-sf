@@ -16,4 +16,10 @@
 
 body { font-family: 'Montserrat', sans-serif; }
 .base-color { background-color: #0c2651; color: #FFF; }
+.post-area { background-color: #FFF; color: #000; border-radius: 5px;}
 .tool { font-weight: bold; width: 35px; height: 35px; vertical-align: bottom;}
+.right-buffer { margin-right: 20px; }
+.left-buffer { margin-left: 20px; }
+.top-buffer { margin-top: 25px; }
+.bottom-buffer { margin-bottom: 25px; }
+.title { font-size: 40px; font-weight: bold; text-align: center; }

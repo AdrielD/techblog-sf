@@ -12,22 +12,32 @@
 	<button type="button" id="link" class="btn btn-info tool" style="font-size: 18px; padding-left: 7px;">&lt;&gt;</button>
 	<button type="button" id="img" class="btn btn-info tool" style="padding-left: 3px;">img</button>
 	<button type="button" id="code" class="btn btn-info tool" style="font-size: 10px; padding-left: 5px;">code</button>
-	<button type="button" id="quote" class="btn btn-info tool" style="font-size: 10px; padding-left: 3px;">quote</button>
+	<button type="button" id="quote" class="btn btn-info tool" style="font-size: 10px; padding-left: 2px;">quote</button>
 </div>
 <script type="text/javascript">
-	var textarea = document.getElementById("markdown_text");
-	document.getElementById("h1").onclick = function() { document.getElementById("markdown_text").value += "\n# TITLE"; }
-	document.getElementById("h2").onclick = function() { document.getElementById("markdown_text").value += "\n## TITLE"; }
-	document.getElementById("h3").onclick = function() { document.getElementById("markdown_text").value += "\n### TITLE"; }
-	document.getElementById("h4").onclick = function() { document.getElementById("markdown_text").value += "\n#### TITLE"; }
-	document.getElementById("h5").onclick = function() { document.getElementById("markdown_text").value += "\n##### TITLE"; }
-	document.getElementById("h6").onclick = function() { document.getElementById("markdown_text").value += "\n###### TITLE"; }
-	document.getElementById("i").onclick = function() { document.getElementById("markdown_text").value += "\n*TEXT*"; }
-	document.getElementById("b").onclick = function() { document.getElementById("markdown_text").value += "\n**TEXT**"; }
-	document.getElementById("s").onclick = function() { document.getElementById("markdown_text").value += "\n~~TEXT~~"; }
-	document.getElementById("list").onclick = function() { document.getElementById("markdown_text").value += "\n1. ITEM\n2. ITEM\n3. ITEM"; }
-	document.getElementById("link").onclick = function() { document.getElementById("markdown_text").value += "\n[TEXT](LINK)"; }
-	document.getElementById("img").onclick = function() { document.getElementById("markdown_text").value += "\n![TEXT](IMAGE_LINK \"TITLE\")"; }
-	document.getElementById("code").onclick = function() { document.getElementById("markdown_text").value += "\n`CODE`"; }
-	document.getElementById("quote").onclick = function() { document.getElementById("markdown_text").value += "\n> TEXT"; }
+	window.onload = function() {
+		function elid(id) { return document.getElementById(id); }
+
+		function toolAction(text_element, markdown_text, selection_start, selection_end) {
+			text_element.value += markdown_text;
+			text_element.focus();
+			text_element.setSelectionRange(text_element.value.length-selection_start, text_element.value.length-selection_end)
+		}
+
+		var textarea = elid("markdown_text");
+		elid("h1").onclick = function() { toolAction(textarea, "\n# TITLE", 5, 0); }
+		elid("h2").onclick = function() { toolAction(textarea, "\n## TITLE", 5, 0); }
+		elid("h3").onclick = function() { toolAction(textarea, "\n### TITLE", 5, 0); }
+		elid("h4").onclick = function() { toolAction(textarea, "\n#### TITLE", 5, 0); }
+		elid("h5").onclick = function() { toolAction(textarea, "\n##### TITLE", 5, 0); }
+		elid("h6").onclick = function() { toolAction(textarea, "\n###### TITLE", 5, 0); }
+		elid("i").onclick = function() { toolAction(textarea, "*TEXT*", 5, 1); }
+		elid("b").onclick = function() { toolAction(textarea, "**TEXT**", 6, 2); }
+		elid("s").onclick = function() { toolAction(textarea, "~~TEXT~~", 6, 2); }
+		elid("list").onclick = function() { toolAction(textarea, "\n1. ITEM\n2. ITEM\n3. ITEM", 20, 16); }
+		elid("link").onclick = function() { toolAction(textarea, "[TEXT](LINK)", 11, 7); }
+		elid("img").onclick = function() { toolAction(textarea, "![TEXT](IMAGE_LINK \"TITLE\")", 25, 21); }
+		elid("code").onclick = function() { toolAction(textarea, "`CODE`", 5, 1); }
+		elid("quote").onclick = function() { toolAction(textarea, "\n> TEXT", 4, 0); }
+	}
 </script>

@@ -1,22 +1,24 @@
-<%= form_with model: @post, local: true do |f| %>
-	<div class="form-group">
-		<br>
-		<%= f.label :title %>
-		<%= f.text_field :title, class: "form-control form-control-sm" %><br><br>
-		<%= f.label :Text %>
-		<%= render "markdown_tools" %>
-		<%= f.text_area :markdown_text, id: :markdown_text, size: "100x25", class: "form-control form-control-sm" %>
-    <%= f.submit "Save", class: "btn btn-success" %>
-<% end %>
-<input type="button" name="preview" id="preview_button" class="btn btn-primary" value="Preview">
-<p id="preview_screen"></p>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<%= form_with model: @post, local: true do |f| %>
+			<div class="form-group">
+				<%= f.label :title %>
+				<%= f.text_field :title, class: "form-control form-control-sm" %><br><br>
+				<%= f.label :Text %>
+				<%= render "markdown_tools" %>
+				<%= f.text_area :markdown_text, id: :markdown_text, size: "100x15", class: "form-control form-control-sm" %>
+				<p id="preview_screen" class="top-buffer bottom-buffer"></p>
+				<input type="button" name="preview" id="preview_button" class="btn btn-primary" value="Preview">
+		    <%= f.submit "Save", class: "btn btn-success pull-right" %>
+		<% end %>
+	</div>
+</div>
 <script type="text/javascript">
 	var markdown_text = document.getElementById("markdown_text");
 	var preview_button = document.getElementById("preview_button");
 	preview_button.addEventListener("click", function() {
 		App.markdown_conversion.convert(markdown_text.value);
 	});
-
 	var preview_screen = document.getElementById("preview_screen");
 	document.addEventListener("markdown_conversion_channel", function(e) {
 		preview_screen.innerHTML = e.detail

@@ -31,8 +31,10 @@ class PostsController < ApplicationController
 	def update
 		@post = Post.find(params[:id])
 
-		if @post.delay_publishing(params[:schedule]).update(allowed_params)
+		if params[:schedule].eql?("0") && @post.update(allowed_params)
 			redirect_to @post, notice: 'Post updated!'
+		elsif @post.delay_publishing(params[:schedule]).update(allowed_params)
+			redirect_to root_url, notice: 'Post update scheduled!'
 		else
 			render :edit
 		end

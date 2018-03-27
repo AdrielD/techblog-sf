@@ -4,11 +4,9 @@ class Post < ApplicationRecord
 
 	validates :title, presence: true
 
-	def delay_publishing(interval_id)
-		unless interval_id.eql?("0")
-			self.publish_status = 0
-			PublishingWorker.perform_at(Scheduler.intervals(interval_id), self.id)
-		end
+	def delay_publishing(due_string)
+		self.publish_status = 0
+		PublishingWorker.perform_at(eval(due_string).from_now, self.id)
 		return self
 	end
 

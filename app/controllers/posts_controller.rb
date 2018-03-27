@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 	before_action :verify_authentication, except: [:index, :show]
 	
 	def index
-		@posts = Post.all
+		@posts = Post.where("publish_status = 1")
 	end
 
 	def show
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 		@post = Post.new(allowed_params)
 		@post.author_id = @current_user.id
 
-		if @post.save
+		if @post.delay_publishing(params[:schedule]).save
 			redirect_to @post, notice: 'Post created!'
 		else
 			render :new
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 	def update
 		@post = Post.find(params[:id])
 
-		if @post.update(allowed_params)
+		if @post.delay_publishing(params[:schedule]).update(allowed_params)
 			redirect_to @post, notice: 'Post updated!'
 		else
 			render :edit
@@ -41,6 +41,6 @@ class PostsController < ApplicationController
 	private
 
 	def allowed_params
-		params.require(:post).permit(:author_id, :title, :markdown_text)
+		params.require(:post).permit(:author_id, :title, :markdown_text, :schedule)
 	end
 end

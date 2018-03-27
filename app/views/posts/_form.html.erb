@@ -9,7 +9,16 @@
 				<%= f.text_area :markdown_text, id: :markdown_text, size: "100x15", class: "form-control form-control-sm" %>
 				<p id="preview_screen" class="top-buffer bottom-buffer"></p>
 				<input type="button" name="preview" id="preview_button" class="btn btn-primary" value="Preview">
-		    <%= f.submit "Save", class: "btn btn-success pull-right" %>
+
+				<div class="input-group pull-right">
+			    <select class="custom-select form-control" name="schedule" id="schedule">
+				    <option value="0" selected>Now</option>
+				    <option value="1">30 secs</option>
+				    <option value="2">1 min</option>
+				    <option value="3">10 min</option>
+				  </select>
+				</div>
+		    <%= f.submit "Publish", class: "btn btn-success pull-right" %>
 		<% end %>
 	</div>
 </div>

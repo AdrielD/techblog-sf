@@ -71,7 +71,7 @@ RSpec.describe PostsController, type: :request do
 		it "allows post creation" do
 			post_attributes = { title: "Guest post", markdown_text: "Sneaky post creation...", author_id: @author.id }
 			expect {
-				post "/posts", params: { post: post_attributes }
+				post "/posts", params: { post: post_attributes, schedule: "0" }
 			}.to change(Post, :count)
 		end
 
@@ -83,7 +83,7 @@ RSpec.describe PostsController, type: :request do
 		it "allows post update" do
 			post = Post.first
 			expect {
-				put "/posts/#{post.id}", params: { post: { title: "A real title change" } }
+				put "/posts/#{post.id}", params: { post: { title: "A real title change" }, schedule: "0" }
 			}.to_not change(post, :updated_at)
 		end
 	end

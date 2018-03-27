@@ -17,8 +17,10 @@ class PostsController < ApplicationController
 		@post = Post.new(allowed_params)
 		@post.author_id = @current_user.id
 
-		if @post.delay_publishing(params[:schedule]).save
+		if params[:schedule].eql?("0") && @post.save(allowed_params)
 			redirect_to @post, notice: 'Post created!'
+		elsif @post.delay_publishing(params[:schedule]).save(allowed_params)
+			redirect_to root_url, notice: 'Post publishing scheduled!'
 		else
 			render :new
 		end
